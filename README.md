@@ -1,6 +1,3 @@
-# Nextjs-crud-tester
-
-
 # Crud With NextJs Hook
 Functions like, Create, update, delete.
 
