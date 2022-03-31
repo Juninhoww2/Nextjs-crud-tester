@@ -59,5 +59,3 @@ Por favor, siga o `código de conduta` desse projeto.
 [![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
 
 
-
-![image](https://user-images.githubusercontent.com/25290972/161126640-38fd6393-420e-4568-933d-e362c9956433.png)
