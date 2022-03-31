@@ -1,0 +1,64 @@
+import React from "react";
+import { useTasks } from "../context/TasksContext";
+import Layout from "../components/Layout";
+import { useRouter } from "next/router";
+import { BsSignpostSplit } from "react-icons/bs";
+import { IoTrashBinOutline } from "react-icons/io5";
+import { FaRegEdit } from "react-icons/fa";
+import Codeleap from '../../public/';
+
+function Home() {
+  const { tasks, deleteTask, updateTask } = useTasks();
+  const router = useRouter();
+
+
+  return (
+    <Layout>
+      <div className="flex justify-center">
+        {tasks.length === 0 ? (
+          <div className="block">
+            <h2 className="text-2xl ">There are no Posts</h2>
+            <BsSignpostSplit size="8rem" />
+            <Codeleap />
+          </div>
+        ) : (
+          <div className="w-7/10">
+            {tasks.map((task, i) => (
+              <div
+                key={task.id}
+                className="bg-gray-700 hover:bg-gray-600 cursor-pointer px-20 py-5 m-2 flex justify-between"
+                onClick={() => router.push("/edit/" + task.id)}
+              >
+                <span className="text-5xl mr-5">{i}</span>
+                <div>
+                  <div className="flex justify-between">
+                    <h1 className="font-bold">{task.title}</h1>
+                    <button
+                      className="px-1 py-3 inline-flex items-center"
+                      onClick={(e) => {
+                        if (window.confirm('Are you sure you want to delete this item?'))
+                        e.stopPropagation();
+                        deleteTask(task.id);
+                      }}
+                    >
+                      <IoTrashBinOutline className="w-10 ml-4" />
+                    </button>
+                    <button
+                      className="px-1 py-3 w-10 inline-flex items-center"
+                        key={task.id}
+                        onClick={() => router.push("/edit/" + task.id)} >
+                        <FaRegEdit className="w-15 mr-4" />
+                    </button> </div>
+                  <p className="text-gray-300">{task.description}</p>
+                  <span className="text-gray-400">{task.id}</span>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </Layout>
+  );
+}
+
+export default Home;
